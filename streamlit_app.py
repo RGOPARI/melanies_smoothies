@@ -20,8 +20,8 @@ my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT
 
 # convert the snowpark Dataframe to a Pandas Dataframe so we can use the LOC function
 pd_df=my_dataframe.to_pandas()
-#st.dataframe(pd_df)
-#st.stop()
+st.dataframe(pd_df)
+st.stop()
 
 ingredients_list = st.multiselect(
     'choose up to 5 ingredients:' 
@@ -41,7 +41,7 @@ if ingredients_list:
         fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_chosen)
         fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width=True)
         
-    st.write(ingredients_string)
+    #st.write(ingredients_string)
 
 
 my_insert_stmt = """ insert into smoothies.public.orders(ingredients, name_on_order)
